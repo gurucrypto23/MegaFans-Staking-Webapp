@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import Moralis from "moralis";
 import { Card, Typography, Button, Input, Upload } from "antd";
-import { abi } from "../contracts/Mintango.json";
+import { abi } from "../contracts/MegaFansNFT.json";
+import address from "../addresses/address";
 import { useIPFS } from "../hooks/useIPFS";
 import MintConfirmModal from "./MintConfirmModal";
 
@@ -49,7 +50,7 @@ export default function Minter() {
     const minter = await Moralis.executeFunction({
       functionName: "mint",
       abi,
-      contractAddress: "0x7247d02546EA6d0f1A46403081f1874463fBE08a",
+      contractAddress: address.mumbai.MEGAFANSNFT_ADDRESS,
       params: {
         cid,
         data: []

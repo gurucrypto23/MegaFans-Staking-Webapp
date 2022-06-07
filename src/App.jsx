@@ -13,7 +13,7 @@ import NFTBalance from "components/NFTBalance";
 import NativeBalance from "components/NativeBalance";
 import Home from "components/Home";
 import MenuItems from "./components/MenuItems";
-import Background from "Background";
+// import Background from "Background";
 import "antd/dist/antd.css";
 import bgImage from "./assets/bg-second.jpg";
 import "./style.css";
@@ -22,7 +22,6 @@ const { Header } = Layout;
 
 const styles = {
   layout: {
-    // height: "100vh",
     overflow: "auto",
   },
   content: {

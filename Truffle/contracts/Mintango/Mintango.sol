@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * @notice This contract is intended to reference it's metadata on IPFS.
  * @dev Implements black/whitelisting and on-chain ratings.
  */
-contract Mintango is ERC1155, Ownable {
+contract MegaFansNFT is ERC1155, Ownable {
     // tracks the total number of minted tokens
     uint256 private _currentTokenID = 0;
 
@@ -40,7 +40,7 @@ contract Mintango is ERC1155, Ownable {
     modifier noBlacklisters() {
         require(
             !blacklist[msg.sender],
-            "Mintango#notBlacklisted: BLACKLISTED_ADDRESSES_ARE_FORBIDDEN"
+            "MegaFansNFT#notBlacklisted: BLACKLISTED_ADDRESSES_ARE_FORBIDDEN"
         );
         _;
     }
@@ -50,10 +50,10 @@ contract Mintango is ERC1155, Ownable {
      * @dev Reverts if token does not exist
      */
     modifier tokenExists(uint256 tokenID) {
-        require(tokenID > 0, "Mintango#tokenExists: INVALID_TOKEN_ID");
+        require(tokenID > 0, "MegaFansNFT#tokenExists: INVALID_TOKEN_ID");
         require(
             tokenID <= _currentTokenID,
-            "Mintango#tokenExists: TOKEN_ID_DOES_NOT_EXIST"
+            "MegaFansNFT#tokenExists: TOKEN_ID_DOES_NOT_EXIST"
         );
         _;
     }
@@ -65,11 +65,11 @@ contract Mintango is ERC1155, Ownable {
     modifier onlyNewVoters(uint256 tokenID) {
         require(
             !upVoteAddresses[tokenID][msg.sender],
-            "Mintango#onlyNewVoters: ACCOUNT_ALREADY_UPVOTED"
+            "MegaFansNFT#onlyNewVoters: ACCOUNT_ALREADY_UPVOTED"
         );
         require(
             !downVoteAddresses[tokenID][msg.sender],
-            "Mintango#onlyNewVoters: ACCOUNT_ALREADY_DOWNVOTED"
+            "MegaFansNFT#onlyNewVoters: ACCOUNT_ALREADY_DOWNVOTED"
         );
         _;
     }
@@ -136,7 +136,7 @@ contract Mintango is ERC1155, Ownable {
         // }
 
         // premint checks then increments the token id
-        require(idmap[cid] == 0, "Mintango: This cid already exists");
+        require(idmap[cid] == 0, "MegaFansNFT: This cid already exists");
         _currentTokenID = _currentTokenID + 1;
 
         // add to reference maps

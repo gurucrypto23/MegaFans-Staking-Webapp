@@ -15,12 +15,19 @@ import Home from "components/Home";
 import MenuItems from "./components/MenuItems";
 import Background from "Background";
 import "antd/dist/antd.css";
+import bgImage from "./assets/bg-second.jpg";
 import "./style.css";
 
 const { Header } = Layout;
 
 const styles = {
+  layout: {
+    // height: "100vh",
+    overflow: "auto",
+  },
   content: {
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: "cover",
     display: "flex",
     justifyContent: "center",
     fontFamily: "Roboto, sans-serif",
@@ -61,8 +68,8 @@ const App = () => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   return (
-    <Layout style={{ height: "100vh", overflow: "auto" }}>
-      <Background/>
+    <Layout style={styles.layout}>
+      {/* <Background/> */}
       <Router>
         <Header style={styles.header}>
           <MenuItems />

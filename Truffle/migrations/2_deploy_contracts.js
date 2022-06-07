@@ -1,6 +1,6 @@
-var Mintango = artifacts.require("Mintango");
+var MegaFansNFT = artifacts.require("MegaFansNFT");
 
 module.exports = function(deployer) {
-    deployer.deploy(Mintango);
+    deployer.deploy(MegaFansNFT);
     // Additional contracts can be deployed here
 };

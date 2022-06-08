@@ -65,7 +65,7 @@ export default function Minter() {
     setName("")
     setDescription("")
     clearUpload()
-    // console.log("Minter", minter)
+    console.log("Minter", minter)
   }
 
   return (

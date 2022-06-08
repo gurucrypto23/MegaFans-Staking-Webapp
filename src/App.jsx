@@ -23,10 +23,11 @@ const { Header } = Layout;
 const styles = {
   layout: {
     overflow: "auto",
-  },
-  content: {
+    height: "100vh",
     backgroundImage: `url(${bgImage})`,
     backgroundSize: "cover",
+  },
+  content: {
     display: "flex",
     justifyContent: "center",
     fontFamily: "Roboto, sans-serif",
@@ -38,7 +39,7 @@ const styles = {
     position: "fixed",
     zIndex: 1,
     width: "100%",
-    background: "rgb(255, 255, 255, .3)",
+    background: "rgb(255, 255, 255)",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",

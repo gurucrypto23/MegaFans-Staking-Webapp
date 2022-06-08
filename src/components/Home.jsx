@@ -56,8 +56,8 @@ export default function Minter() {
       abi,
       contractAddress: address.mumbai.MEGAFANSNFT_ADDRESS,
       params: {
-        account,
-        cid
+        to: account,
+        metadataURI: cid
       }
     })
     setUploading(false);

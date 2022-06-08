@@ -73,7 +73,7 @@ function NFTBalance() {
           {NFTBalances?.result &&
             NFTBalances.result.map((nft, index) => {
               console.log(nft);
-              if (nft.token_address === address.mumbai.MEGAFANSNFT_ADDRESS) {
+              if (nft.token_address.toLowerCase() === address.mumbai.MEGAFANSNFT_ADDRESS.toLowerCase()) {
                 return (
                   <Card
                     hoverable

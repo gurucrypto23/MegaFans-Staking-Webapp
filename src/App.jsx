@@ -39,7 +39,7 @@ const styles = {
     position: "fixed",
     zIndex: 1,
     width: "100%",
-    background: "rgb(255, 255, 255, .9)",
+    background: "rgb(255, 255, 255, .85)",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",

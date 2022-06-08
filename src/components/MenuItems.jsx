@@ -22,10 +22,10 @@ function MenuItems() {
       defaultSelectedKeys={[pathname]}
     >
       <Menu.Item key="/home">
-        <NavLink to="/home">Minter</NavLink>
+        <NavLink to="/home">Mint</NavLink>
       </Menu.Item>
       <Menu.Item key="/nftBalance">
-        <NavLink to="/nftBalance">My Goods</NavLink>
+        <NavLink to="/nftBalance">NFTs</NavLink>
       </Menu.Item>
     </Menu>
   );

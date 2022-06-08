@@ -5,11 +5,13 @@ import { abi } from "../contracts/MegaFansNFT.json";
 import address from "../addresses/address";
 import { useIPFS } from "../hooks/useIPFS";
 import MintConfirmModal from "./MintConfirmModal";
+import { useMoralis } from "react-moralis";
 
 const { TextArea } = Input;
 
 export default function Minter() {
 
+  const { account } = useMoralis();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
@@ -50,12 +52,12 @@ export default function Minter() {
     const cid = await mintNft(name, description, file);
     console.log(cid);
     const minter = await Moralis.executeFunction({
-      functionName: "mint",
+      functionName: "safeMint",
       abi,
       contractAddress: address.mumbai.MEGAFANSNFT_ADDRESS,
       params: {
-        cid,
-        data: []
+        account,
+        cid
       }
     })
     setUploading(false);
@@ -103,6 +105,7 @@ export default function Minter() {
           size="large"
           style={{ width: "100%" }}
           loading={uploading}
+          disabled={!account}
           onClick={() => mintAndGo()}
         >
           MINT AND GO

@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-function NFTComponent ({tokenId, stakedTokens}) {
+function NFTComponent ({tokenId, stakedTokens, updateStakedNFT}) {
   const [ metaData, setMetaData ] = useState({});
   const { account } = useMoralis();
   const [ isLoading, setIsLoading ] = useState(false);
@@ -76,6 +76,8 @@ function NFTComponent ({tokenId, stakedTokens}) {
     }).then((res) => {
       console.log(res);
       // Make the button as alive
+      console.log("updated");
+      updateStakedNFT();
       setIsLoading(false);
     }).catch((err) => {
       setIsLoading(false);
@@ -103,9 +105,14 @@ function NFTComponent ({tokenId, stakedTokens}) {
       }
     }).then(res => {
       // Make the button as alive
+      console.log("updated");
+      updateStakedNFT();
       setIsLoading(false);
       console.log(res);
-    });
+    }).catch((err) => {
+      setIsLoading(false);
+      console.log(err)
+    });;
   };
 
   if (!metaData.name) return <></>;
@@ -120,7 +127,7 @@ function NFTComponent ({tokenId, stakedTokens}) {
             loading={isLoading}
             onClick={ () => {nftStaking(tokenId)} }
           >
-            Stake NFT
+            {isLoading ? "Staking" : "Stake NFT"}
           </Button> 
         : 
           <Button
@@ -129,7 +136,7 @@ function NFTComponent ({tokenId, stakedTokens}) {
             loading={isLoading}
             onClick={ () => {nftUnStaking(tokenId)} }
           >
-            Unstake NFT
+            {isLoading ? "Untaking" : "Unstake NFT"}
           </Button>
       ]}
       style={{ width: 240, border: "2px solid #e7eaf3" }}
@@ -159,25 +166,27 @@ function NFTBalance() {
   const { account } = useMoralis();
 
   useEffect(() => {
-    const getStakedTokens = async () => {
-      const _stakedTokens = await Moralis.executeFunction({
-        functionName: "getStakedTokens",
-        abi: StakingSystemABI,
-        contractAddress: address.mumbai.STAKING_SYSTEM_ADDRESS,
-        params: {
-          _user:account
-        }
-      });
-
-      // console.log(_stakedTokens);
-      let tokens = [];
-      tokens = _stakedTokens.map((each) => {
-        return parseInt(Number(each._hex)); 
-      })
-      setStakedTokens(tokens);
-    };
     getStakedTokens();
   }, [account])
+
+  // Get Staked Token
+  const getStakedTokens = async () => {
+    const _stakedTokens = await Moralis.executeFunction({
+      functionName: "getStakedTokens",
+      abi: StakingSystemABI,
+      contractAddress: address.mumbai.STAKING_SYSTEM_ADDRESS,
+      params: {
+        _user:account
+      }
+    });
+
+    // console.log(_stakedTokens);
+    let tokens = [];
+    tokens = _stakedTokens.map((each) => {
+      return parseInt(Number(each._hex)); 
+    })
+    setStakedTokens(tokens);
+  };
 
 
   return (
@@ -190,15 +199,14 @@ function NFTBalance() {
               return <NFTComponent
                 tokenId={token_id}
                 stakedTokens={stakedTokens}
+                updateStakedNFT={getStakedTokens}
                 key={index}
               ></NFTComponent>
             })
           }
           {
             stakedTokens ?? 
-            <Divider orientation="right" plain>
-              Staked NFT
-            </Divider>
+            <Divider />
           }
           {NFTBalances?.result &&
             NFTBalances.result.map((nft, index) => {
@@ -206,6 +214,7 @@ function NFTBalance() {
                 return <NFTComponent
                   tokenId={nft.token_id}
                   stakedTokens={stakedTokens}
+                  updateStakedNFT={getStakedTokens}
                   key={index}
                 ></NFTComponent>
               }

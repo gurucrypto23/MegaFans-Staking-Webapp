@@ -67,11 +67,12 @@ function NFTBalance() {
 
   return (
     <div style={{ padding: "15px", maxWidth: "1030px", width: "100%" }}>
-      <h1>NFT ITEMS</h1>
+      <h1>MEGAFANS ITEMS</h1>
       <div style={styles.NFTs}>
         <Skeleton loading={!NFTBalances?.result}>
           {NFTBalances?.result &&
             NFTBalances.result.map((nft, index) => {
+              console.log(MEGAFANSNFT_ADDRESS, nft.token_address.toLowerCase());
               if (nft.token_address.toLowerCase() === address.mumbai.MEGAFANSNFT_ADDRESS.toLowerCase()) {
                 console.log(nft);
                 return (

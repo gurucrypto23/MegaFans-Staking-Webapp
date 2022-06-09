@@ -81,7 +81,7 @@ export default function Minter() {
           zIndex: 1,
         }}
       >
-        <Typography.Title level={3}>NFT Minter</Typography.Title>
+        <Typography.Title level={3}>Megafans NFT</Typography.Title>
         <Input showCount placeholder="Name" maxLength={20} value={name} onChange={e => setName(e.target.value)} style={{ marginBottom: "1rem" }}/>
         <TextArea showCount placeholder="Description..." value={description} maxLength={140} onChange={e => setDescription(e.target.value)} style={{ marginBottom: "1rem"}}/>
         <div style={{ marginBottom: "1rem"}}>

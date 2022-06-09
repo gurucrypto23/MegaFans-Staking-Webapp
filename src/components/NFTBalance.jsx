@@ -1,11 +1,12 @@
 import React, { } from "react";
-import { useMoralis, useNFTBalances } from "react-moralis";
+import { useNFTBalances } from "react-moralis";
 import { Card, Image, Tooltip, Skeleton } from "antd";
 import {
   SendOutlined,
 } from "@ant-design/icons";
 import { abi as megaFansAbi } from "../contracts/MegaFansNFT.json";
 import address from "../addresses/address";
+import Moralis from "moralis";
 
 const { Meta } = Card;
 
@@ -24,7 +25,6 @@ const styles = {
 
 function NFTBalance() {
   const { data: NFTBalances } = useNFTBalances();
-  const { Moralis } = useMoralis();
 
   async function getNFT(token_id) {
     return await Moralis.executeFunction({

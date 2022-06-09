@@ -28,14 +28,14 @@ function NFTBalance() {
 
   async function getNFT(token_id) {
     console.log(abi);
-    return await Moralis.executeFunction({
+    console.log(await Moralis.executeFunction({
       functionName: "tokenURI",
       abi,
       contractAddress: address.mumbai.MEGAFANSNFT_ADDRESS,
       params: {
         tokenId: token_id
       }
-    });
+    }));
   }
 
   const nftStaking = (nft) => {
@@ -53,7 +53,7 @@ function NFTBalance() {
               if (nft.token_address.toLowerCase() === address.mumbai.MEGAFANSNFT_ADDRESS.toLowerCase()) {
                 console.log(nft);
                 console.log("we are here!")
-                console.log(await getNFT(1));
+                console.log(getNFT(1));
                 return (
                   <Card
                     hoverable

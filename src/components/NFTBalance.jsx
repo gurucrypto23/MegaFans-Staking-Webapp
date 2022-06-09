@@ -4,7 +4,7 @@ import { Card, Image, Tooltip, Skeleton } from "antd";
 import {
   SendOutlined,
 } from "@ant-design/icons";
-import { abi as megaFansAbi } from "../contracts/MegaFansNFT.json";
+import { abi } from "../contracts/MegaFansNFT.json";
 import address from "../addresses/address";
 import Moralis from "moralis";
 
@@ -27,9 +27,10 @@ function NFTBalance() {
   const { data: NFTBalances } = useNFTBalances();
 
   async function getNFT(token_id) {
+    console.log(abi);
     return await Moralis.executeFunction({
       functionName: "tokenURI",
-      megaFansAbi,
+      abi,
       contractAddress: address.mumbai.MEGAFANSNFT_ADDRESS,
       params: {
         tokenId: token_id
@@ -41,7 +42,6 @@ function NFTBalance() {
     // setNftToSend(nft);
     // setVisibility(true);
   };
-
 
   return (
     <div style={{ padding: "15px", maxWidth: "1030px", width: "100%" }}>

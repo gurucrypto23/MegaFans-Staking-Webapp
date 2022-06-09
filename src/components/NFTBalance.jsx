@@ -52,6 +52,7 @@ function NFTBalance() {
             NFTBalances.result.map(async (nft, index) => {
               if (nft.token_address.toLowerCase() === address.mumbai.MEGAFANSNFT_ADDRESS.toLowerCase()) {
                 console.log(nft);
+                console.log("we are here!")
                 console.log(await getNFT(1));
                 return (
                   <Card

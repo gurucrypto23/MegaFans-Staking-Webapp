@@ -49,10 +49,10 @@ function NFTBalance() {
       <div style={styles.NFTs}>
         <Skeleton loading={!NFTBalances?.result}>
           {NFTBalances?.result &&
-            NFTBalances.result.map((nft, index) => {
+            NFTBalances.result.map(async (nft, index) => {
               if (nft.token_address.toLowerCase() === address.mumbai.MEGAFANSNFT_ADDRESS.toLowerCase()) {
                 console.log(nft);
-                console.log(getNFT(1));
+                console.log(await getNFT(1));
                 return (
                   <Card
                     hoverable

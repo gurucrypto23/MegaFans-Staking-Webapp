@@ -48,10 +48,9 @@ export default function Minter() {
 
   const mintAndGo = async () => {
     setUploading(true);
-    console.log(name, description, file);
     const cid = await mintNft(name, description, file);
-    console.log(cid, typeof cid);
-    const minter = await Moralis.executeFunction({
+    console.log(typeof cid);
+    await Moralis.executeFunction({
       functionName: "safeMint",
       abi,
       contractAddress: address.mumbai.MEGAFANSNFT_ADDRESS,
@@ -65,7 +64,6 @@ export default function Minter() {
     setName("")
     setDescription("")
     clearUpload()
-    console.log("Minter", minter)
   }
 
   return (
@@ -81,7 +79,7 @@ export default function Minter() {
           zIndex: 1,
         }}
       >
-        <Typography.Title level={3}>Megafans NFT</Typography.Title>
+        <Typography.Title level={3}>MegaFans NFT</Typography.Title>
         <Input showCount placeholder="Name" maxLength={20} value={name} onChange={e => setName(e.target.value)} style={{ marginBottom: "1rem" }}/>
         <TextArea showCount placeholder="Description..." value={description} maxLength={140} onChange={e => setDescription(e.target.value)} style={{ marginBottom: "1rem"}}/>
         <div style={{ marginBottom: "1rem"}}>

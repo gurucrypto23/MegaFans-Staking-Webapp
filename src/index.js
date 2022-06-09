@@ -8,10 +8,10 @@ import QuickStart from "components/Home";
 
 /** Get your free Moralis Account https://moralis.io/ */
 
-// const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
-// const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
-const APP_ID="imAomu1AxniYv9w4fYeC11nOkoHwZuAGOmbxCImB";
-const SERVER_URL="https://npp1xps7vlrl.usemoralis.com:2053/server";
+const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
+const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
+// const APP_ID="imAomu1AxniYv9w4fYeC11nOkoHwZuAGOmbxCImB";
+// const SERVER_URL="https://npp1xps7vlrl.usemoralis.com:2053/server";
 
 const Application = () => {
   const isServerInfo = APP_ID && SERVER_URL ? true : false;

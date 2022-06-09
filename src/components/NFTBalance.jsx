@@ -42,6 +42,7 @@ function NFTBalance() {
     // setNftToSend(nft);
     // setVisibility(true);
   };
+  console.log(getNFT(1));
 
   return (
     <div style={{ padding: "15px", maxWidth: "1030px", width: "100%" }}>
@@ -52,8 +53,6 @@ function NFTBalance() {
             NFTBalances.result.map(async (nft, index) => {
               if (nft.token_address.toLowerCase() === address.mumbai.MEGAFANSNFT_ADDRESS.toLowerCase()) {
                 console.log(nft);
-                console.log("we are here!")
-                console.log(getNFT(1));
                 return (
                   <Card
                     hoverable
@@ -63,12 +62,14 @@ function NFTBalance() {
                           onClick={() => nftStaking(nft)}
                           isVisible={true}
                         />
+                        Stake NFT
                       </Tooltip>,
                       <Tooltip title="Unstake NFT">
                         <SendOutlined
                           onClick={() => nftStaking(nft)}
-                          isVisible={true}
+                          isVisible={false}
                         />
+                        Unstake NFT
                       </Tooltip>
                     ]}
                     style={{ width: 240, border: "2px solid #e7eaf3" }}

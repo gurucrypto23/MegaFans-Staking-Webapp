@@ -50,7 +50,7 @@ export default function Minter() {
     setUploading(true);
     console.log(name, description, file);
     const cid = await mintNft(name, description, file);
-    console.log(cid);
+    console.log(cid, typeof cid);
     const minter = await Moralis.executeFunction({
       functionName: "safeMint",
       abi,

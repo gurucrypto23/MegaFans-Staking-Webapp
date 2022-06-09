@@ -33,15 +33,15 @@ export const useIPFS = () => {
     // const file = await saveFile("file.json", {saveIPFS: true, base64 : Buffer.from(JSON.stringify(metadata), 'base64')});
     // const buff = Buffer.from(JSON.stringify(metadata), 'base64')
     const buff = btoa(JSON.stringify(metadata))
-    const file = await saveFile("0x00.json", {base64: buff}, {saveIPFS: true});
+    const file = await saveFile("file.json", {base64: buff}, {saveIPFS: true});
     return file.hash();
-};
+  };
 
   // Mint NFT
   const mintNft = async (name, description, imageFile) => {
-      const image = await uploadImage(imageFile);
-      const cidHash = await uploadMetadata(name, description, image);
-      return cidHash;
+    const image = await uploadImage(imageFile);
+    const cidHash = await uploadMetadata(name, description, image);
+    return cidHash;
   };
 
   return { resolveLink, isUploading, error, moralisFile, mintNft };

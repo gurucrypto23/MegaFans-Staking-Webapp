@@ -59,6 +59,7 @@ export default function Minter() {
         metadataURI: cid
       }
     })
+
     setUploading(false);
     setModalVisible(true);
     setName("")
